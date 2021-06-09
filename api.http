@@ -8,11 +8,10 @@ get http://localhost:3000/fajlfdsjk
 
 
 ###
-post http://localhost:3000/admin/products
+post http://localhost:3000/admin/product
 Content-Type: application/json
 
 {
-    "name": "book", 
-    "price": "4k"
+    "title": "new Test"
 }
 
