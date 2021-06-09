@@ -1,0 +1,18 @@
+get http://localhost:3000
+
+###
+get http://localhost:3000/add-product
+
+###
+get http://localhost:3000/fajlfdsjk
+
+
+###
+post http://localhost:3000/admin/products
+Content-Type: application/json
+
+{
+    "name": "book", 
+    "price": "4k"
+}
+
