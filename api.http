@@ -12,6 +12,6 @@ post http://localhost:3000/admin/product
 Content-Type: application/json
 
 {
-    "title": "new Test"
+    "title": " more test"
 }
 

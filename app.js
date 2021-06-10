@@ -1,26 +1,24 @@
 const path = require('path');
+
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
-const rootDir = require('./utils/path');
-
-const {route, products} = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
+const errorController = require('./controllers/error');
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json())
-app.set('view engine', 'ejs')
 
+app.set('view engine', 'ejs');
+app.set('views', 'views');
 
-// console.log(rootDir)
-app.use('/admin', route);
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
-app.use((req,res,next) => {
-   res.render('404', {pageTitle: 'Error Page', path:'error'})
-});
+app.use(errorController.get404);
 
-
-app.listen(3000, () => console.log('server starting on port 3000'));
+app.listen(3000);
